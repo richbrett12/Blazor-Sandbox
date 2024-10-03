@@ -1,0 +1,20 @@
+[
+	{
+		"id":  "3r8713487",
+		"name": "TShirt",
+		"cost": "19.99",
+		"description": "100% Cotton Premium TShirt"
+	},
+	{
+		"id":  "098w567",
+		"name": "Pants",
+		"cost": "29.99",
+		"description": "Lightweight, stretchy pant"
+	},
+	{
+		"id": "345678i80",
+		"name": "Hat",
+		"cost": "14.99",
+		"description": "Classic Snapback Cap"
+	}
+]

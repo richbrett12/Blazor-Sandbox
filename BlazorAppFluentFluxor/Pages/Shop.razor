@@ -1,0 +1,44 @@
+﻿@page "/shop"
+@inject HttpClient Http
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+<PageTitle>Shop</PageTitle>
+
+<h1>Welcome to the Shop!</h1>
+
+<FluentGrid Spacing="@Spacing" AdaptiveRendering="true" Justify="@Justification" Style="padding: 4px; ">
+	@if (ShopState.Value.CurrentShopItems.Count() > 0)
+	{
+		@foreach (var item in ShopState.Value.CurrentShopItems)
+		{
+			<FluentGridItem xs="12" sm="12" md="12" lg="6" xl="4">
+				<FluentCard Style="background-color: lightgray; padding: 25px;">
+					<FluentHeader Style="border-radius: 16px; background-color: whitesmoke; color: dimgray">
+						@item.Name
+						<FluentSpacer />
+						$@item.Cost
+					</FluentHeader>
+					<div style="margin: 15px 0px 0px 15px; display: flex; justify-content: space-between">
+						@item.Description
+						@if(!CartState.Value.CartItems.Any(i => i.id == item.Id))
+						{
+							<FluentButton @onclick="() => AddItemToCart(item)" Appearance="Appearance.Accent">Add to Cart</FluentButton>
+						} else
+						{
+							<FluentButton IconEnd="@(new Icons.Regular.Size16.Checkmark())">Added</FluentButton>
+						}
+					</div>
+				</FluentCard>
+			</FluentGridItem>
+		}
+	}
+	else
+	{
+		<FluentGridItem xs="10">
+			<FluentCard Style="background-color: whitesmoke; display: flex; flex-direction: column; align-items: left">
+				Sorry! No items in the store at this time. You can add items in the Shop Manager.
+			</FluentCard>
+		</FluentGridItem>
+	}
+</FluentGrid>
+

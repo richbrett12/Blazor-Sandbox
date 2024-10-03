@@ -1,0 +1,57 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\A157291\\source\\repos\\BlazorAppFluentFluxor\\BlazorAppFluentFluxor\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.webassembly.js",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js"
+    },
+    {
+      "Id": "C:\\Users\\A157291\\source\\repos\\BlazorAppFluentFluxor\\BlazorAppFluentFluxor\\obj\\Debug\\net8.0\\compressed\\n8l27w4i0i.gz",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js.gz"
+    },
+    {
+      "Id": "C:\\Users\\A157291\\source\\repos\\BlazorAppFluentFluxor\\BlazorAppFluentFluxor\\obj\\Debug\\net8.0\\scopedcss\\bundle\\BlazorAppFluentFluxor.styles.css",
+      "PackagePath": "staticwebassets\\BlazorAppFluentFluxor.styles.css"
+    },
+    {
+      "Id": "C:\\Users\\A157291\\source\\repos\\BlazorAppFluentFluxor\\BlazorAppFluentFluxor\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "C:\\Users\\A157291\\source\\repos\\BlazorAppFluentFluxor\\BlazorAppFluentFluxor\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\A157291\\source\\repos\\BlazorAppFluentFluxor\\BlazorAppFluentFluxor\\wwwroot\\icon-192.png",
+      "PackagePath": "staticwebassets\\icon-192.png"
+    },
+    {
+      "Id": "C:\\Users\\A157291\\source\\repos\\BlazorAppFluentFluxor\\BlazorAppFluentFluxor\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "C:\\Users\\A157291\\source\\repos\\BlazorAppFluentFluxor\\BlazorAppFluentFluxor\\wwwroot\\sample-data\\store.json",
+      "PackagePath": "staticwebassets\\sample-data\\store.json"
+    },
+    {
+      "Id": "C:\\Users\\A157291\\source\\repos\\BlazorAppFluentFluxor\\BlazorAppFluentFluxor\\wwwroot\\sample-data\\weather.json",
+      "PackagePath": "staticwebassets\\sample-data\\weather.json"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.BlazorAppFluentFluxor.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.BlazorAppFluentFluxor.props",
+      "PackagePath": "build\\BlazorAppFluentFluxor.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.BlazorAppFluentFluxor.props",
+      "PackagePath": "buildMultiTargeting\\BlazorAppFluentFluxor.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.BlazorAppFluentFluxor.props",
+      "PackagePath": "buildTransitive\\BlazorAppFluentFluxor.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

@@ -1,0 +1,69 @@
+﻿@page "/manage"
+@using BlazorAppFluentFluxor.Store.Shop
+@inject HttpClient Http
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+@attribute [StreamRendering]
+
+<div style="display: flex; align-items: center">
+	<h2>Welcome to the Shop Manager</h2>
+	@if (ShopState.Value.CurrentShopItems.Count() == 0)
+	{
+		<FluentButton Style="font-size: 10px; padding: 5px; margin-bottom: 8px; margin-left: 8px" @onclick="() => PopulateSampleStoreItems()" Appearance="Appearance.Accent">Add Sample Data</FluentButton>
+	}
+</div>
+
+
+<h5>Current shop items</h5>
+
+@foreach (var item in ShopState.Value.CurrentShopItems)
+{
+	<FluentCard Style="background-color: whitesmoke; padding: 10px; height: fit-content; margin-top: 16px">
+		<form style="display: flex; justify-content: start; align-items: end">
+			<FluentButton Appearance="Appearance.Stealth" @onclick="() => RemoveItemFromStore(item)" Style="margin-bottom: 14px; padding: 4px">
+				<FluentIcon Value="@(new Icons.Regular.Size16.Delete())" Color="Color.Error" />
+			</FluentButton>
+			<div style="padding: 10px">
+				<FluentTextField Disabled Style="opacity: .8" Maxlength="24" Label="Name" Value="@item.Name"></FluentTextField>
+			</div>
+			<div style="padding: 10px;">
+				<FluentTextField Disabled Style="opacity: .8" Maxlength="24" Label="Price" Value="@item.Cost"></FluentTextField>
+			</div>
+			<div style="padding: 10px; width: 50%">
+				<FluentTextField Disabled Style="width: 100%; opacity: .8" Maxlength="50" Label="Description" Value="@item.Description"></FluentTextField>
+			</div>
+			<FluentNavLink class="edit-button-link" Href="manage/edit" Style="margin: 0px 0px 15px 0px; background-color: white; padding: 4px 4px 0px 4px; border-radius: 4px" Icon="@(new Icons.Regular.Size20.Edit())" IconColor="Color.Accent"></FluentNavLink>
+		</form>
+	</FluentCard>
+}
+
+@if (ShowAddItemForm)
+{
+	<FluentCard Style="background-color: whitesmoke; outline: 1px solid lightgray; padding: 10px; height: fit-content; margin-top: 16px">
+		<EditForm Model="@newFormItem" OnValidSubmit="@AddNewItemToStore" style="display: flex; justify-content: start; align-items: end">
+			<DataAnnotationsValidator />
+
+			<FluentButton Appearance="Appearance.Stealth" @onclick="() => ShowAddItemForm = false" Style="margin-bottom: 14px; padding: 4px">
+				<FluentIcon Value="@(new Icons.Regular.Size16.Delete())" Color="Color.Error" />
+			</FluentButton>
+			<div style="padding: 10px">
+				<FluentTextField Required @bind-Value=newFormItem.newItemName Maxlength="24" Label="Name"></FluentTextField>
+			</div>
+			<div style="padding: 10px;">
+				<FluentTextField Required @bind-Value=newFormItem.newItemCost Maxlength="24" Label="Price"></FluentTextField>
+			</div>
+			<div style="padding: 10px; width: 50%">
+				<FluentTextField Required Style="width: 100%" @bind-Value=newFormItem.newItemDescription Maxlength="80" Label="Description"></FluentTextField>
+			</div>
+			<FluentButton Type="ButtonType.Submit" IconEnd="@(new Icons.Regular.Size16.ShoppingBagAdd())" Appearance="Appearance.Accent" Style="margin-bottom: 14px">
+				Add To Store
+			</FluentButton>
+		</EditForm>
+	</FluentCard>
+}
+
+@if(!ShowAddItemForm)
+{
+	<FluentButton Appearance="Appearance.Outline" IconEnd="@(new Icons.Regular.Size16.Add())" @onclick="() => ShowAddItemForm = true" Style="margin-top: 16px">
+		Add New Shop Item
+	</FluentButton>
+}

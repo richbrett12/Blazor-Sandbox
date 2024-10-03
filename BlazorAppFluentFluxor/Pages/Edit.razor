@@ -1,0 +1,41 @@
+﻿@page "/manage/edit"
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+@attribute [StreamRendering]
+
+<FluentNavLink Style="width: 200px" Href="/manage" Icon="@(new Icons.Regular.Size20.ArrowStepBack())"></FluentNavLink>
+
+<div style="display: flex; align-items: center; margin-top: 8px">
+	<h4>Editing Shop Items</h4>
+</div>
+
+<p>Once you make an edit, make sure to click SAVE before leaving the page.</p>
+@if (!ShopItemsLoaded)
+{
+	<p>Loading...</p>
+}
+else
+{
+	@foreach (var item in ShopItems)
+	{
+		<FluentCard Style="background-color: lightgrey; padding: 25px; height: fit-content; margin-top: 24px">
+			<form style="display: flex; justify-content: start; align-items: end">
+				<div style="padding: 10px">
+					<FluentTextField Maxlength="24" Label="Name" @bind-Value="item.name" Style=""></FluentTextField>
+				</div>
+				<div style="padding: 10px;">
+					<FluentTextField Maxlength="24" Label="Price" @bind-Value="item.cost"></FluentTextField>
+				</div>
+				<div style="padding: 10px; width: 50%">
+					<FluentTextField Style="width: 100%" Maxlength="80" Label="Description" @bind-Value="item.description"></FluentTextField>
+				</div>
+				@if (!isEqual(item))
+				{
+					<FluentButton IconEnd="@(new Icons.Regular.Size20.SaveEdit())" Appearance="Appearance.Accent" @onclick="() => UpdateItem(item)" Style="margin-bottom: 14px; margin-left: 2px">
+						SAVE
+					</FluentButton>
+				}
+			</form>
+		</FluentCard>
+	}
+}
+

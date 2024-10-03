@@ -1,0 +1,65 @@
+﻿@page "/cart"
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+@using BlazorAppFluentFluxor.Store.Shop;
+
+<PageTitle>Shopping Cart</PageTitle>
+
+<h1>Your Shopping Cart</h1>
+
+<h5 style="padding-top: 24px">Cart Items</h5>
+<ul style="list-style: none;">
+	@foreach (var cartItem in ShoppingCartState.Value.CartItems)
+	{
+		ShopItem shopItemDetails = ShopState.Value.CurrentShopItems.First(item => item.Id == cartItem.id);
+		<li style="margin: 8px 0px;">
+			<div style="display: flex">
+				<FluentCard Width="50%" class="cart-item-container">
+					<div style="display: flex; justify-content: space-between">
+						<div style="display: flex">
+							<div class="delete-button">
+								<FluentButton Appearance="Appearance.Stealth" @onclick="() => RemoveFromCart(cartItem)" Style="height: fit-content; margin-right: 2px">
+									<FluentIcon Value="@(new Icons.Regular.Size16.Dismiss())" Color="Color.Error" />
+								</FluentButton>
+							</div>
+							<div style="display: flex; align-items: center; font-size: 16px; font-weight: bold;">
+								@shopItemDetails.Name
+								&nbsp;<div style="font-size: 12px">x @cartItem.quantity</div>
+							</div>
+						</div>
+						<div style="display: flex; align-items: center;">
+							$@(Convert.ToDecimal(shopItemDetails.Cost) * @Convert.ToDecimal(cartItem.quantity))
+						</div>
+					</div>
+				</FluentCard>
+				<div style="display: flex; flex-direction: column; justify-content: center; margin-left: 1px">
+					<FluentButton Disabled="@(cartItem.quantity >= MaxItemQuantity)" Appearance="Appearance.Stealth" @onclick="() => IncreaseQuantity(cartItem)" Style="height: fit-content">
+						<FluentIcon Value="@(new Icons.Filled.Size12.ArrowUp())" Color="Color.Neutral" />
+					</FluentButton>
+					<FluentButton Disabled="@(cartItem.quantity == 1)" Appearance="Appearance.Stealth" @onclick="() => DecreaseQuantity(cartItem)" Style="height: fit-content">
+						<FluentIcon Value="@(new Icons.Filled.Size12.ArrowDown())" Color="Color.Neutral" />
+					</FluentButton>
+				</div>
+			</div>
+		</li>
+	}
+	@if (ShoppingCartState.Value.CartItems.Count() > 0)
+	{
+		<li style="margin: 8px 0px;">
+			<FluentCard Width="50%" Style="background-color: black; color: white">
+				<div style="display: flex; justify-content: space-between">
+					<div style="font-weight: bold">
+						SUBTOTAL
+					</div>
+					<div style="font-size: 16px">
+						$@ShoppingCartState.Value.CartItems.Sum(i => Convert.ToDecimal(ShopState.Value.CurrentShopItems.First(item => item.Id == i.id).Cost) * i.quantity)
+					</div>
+				</div>
+			</FluentCard>
+		</li>
+	}
+	else
+	{
+		<li>Your cart is empty, head over to the <a href="/shop">Shop!</a></li>
+	}
+</ul>
+

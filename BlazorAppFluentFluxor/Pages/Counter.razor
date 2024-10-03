@@ -1,0 +1,12 @@
+﻿@page "/counter"
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: <FluentBadge Appearance="Appearance.Neutral">@CounterState.Value.ClickCount</FluentBadge></p>
+
+<FluentButton Appearance="Appearance.Accent" @onclick="IncrementCount">Click me</FluentButton>
+
+
